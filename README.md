@@ -24,6 +24,7 @@ Node.js
 ## How to install
 - Clone the repo `git clone git@github.com:lnolazco/rock-paper-scissors.git``
 - Then `cd rock-paper-scissors`
+- Set the correct node version `nvm use`
 - Run `npm install`
 
 ## Starting the app
