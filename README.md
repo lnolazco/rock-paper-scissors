@@ -1,7 +1,8 @@
-# REACT JS BOILERPLATE
+# ROCK PAPER SCISSORS
 
+This repo has been based on my [boilerplate](https://github.com/lnolazco/react-boilerplate)
 
-It includes: 
+## It includes: 
 
 - [x] React 16
 - [x] Redux
