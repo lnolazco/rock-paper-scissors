@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 
 const Screen = ({ counter, result, userSelection, cpuSelection }) => (
   <div className="screen">
-    { cpuSelection ? <div>CPU: {cpuSelection}</div> : null }
+    { cpuSelection ? <div className="screen__cpu">CPU: {cpuSelection}</div> : null }
     <div className="screen__counter">Counter: {counter}</div>
     <div className="screen__result">Winner: {result}</div>
-    { userSelection ? <div>USER: {userSelection}</div> : null }
+    { userSelection ? <div className="screen__user">USER: {userSelection}</div> : null }
   </div>
 );
 

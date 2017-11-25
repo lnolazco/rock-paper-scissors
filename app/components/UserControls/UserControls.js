@@ -21,9 +21,21 @@ class UserControls extends PureComponent {
 
     return (
       <div className="user-controls">
-        <button disabled={disabled} onClick={this.setRock}>Rock</button>
-        <button disabled={disabled} onClick={this.setPaper}>Paper</button>
-        <button disabled={disabled} onClick={this.setScissors}>Scissors</button>
+        <button
+          className="user-controls__rock"
+          disabled={disabled}
+          onClick={this.setRock}
+        >Rock</button>
+        <button
+          className="user-controls__paper"
+          disabled={disabled}
+          onClick={this.setPaper}
+        >Paper</button>
+        <button
+          className="user-controls__scissors"
+          disabled={disabled}
+          onClick={this.setScissors}
+        >Scissors</button>
       </div>
     );
   }
