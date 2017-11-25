@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Score from '../Score';
 import Screen from '../Screen';
 import UserControls from '../UserControls';
-import { startGame, resetGame, decreaseCount, setUserSelection } from '../../actions/game-actions';
+import { startGame, resetGame, decreaseCount, setUserSelection, finishRound } from '../../actions/game-actions';
 
 class Game extends PureComponent {
   componentDidUpdate(prevProps) {
@@ -19,8 +19,12 @@ class Game extends PureComponent {
   startGame = () => {
     this.props.startGame();
     this.interval = setInterval(() => {
-      const { counter, userSelection } = this.props;
-      this.props.decreaseCount(counter, userSelection);
+      const { counter } = this.props;
+      if (counter) {
+        this.props.decreaseCount();
+      } else {
+        this.props.finishRound('paper', 'user');
+      }
     }, 1000);
   };
 
@@ -69,6 +73,7 @@ Game.propTypes = {
   startGame: PropTypes.func.isRequired,
   resetGame: PropTypes.func.isRequired,
   decreaseCount: PropTypes.func.isRequired,
+  finishRound: PropTypes.func.isRequired,
   setUserSelection: PropTypes.func.isRequired,
   userSelection: PropTypes.string,
   cpuSelection: PropTypes.string,
@@ -99,7 +104,8 @@ function mapDispatchToProps(dispatch) {
   return {
     startGame: () => dispatch(startGame()),
     resetGame: () => dispatch(resetGame()),
-    decreaseCount: (counter, userSelection) => dispatch(decreaseCount(counter, userSelection)),
+    decreaseCount: () => dispatch(decreaseCount()),
+    finishRound: (cpuSelection, result) => dispatch(finishRound(cpuSelection, result)),
     setUserSelection: selection => dispatch(setUserSelection(selection)),
   };
 }

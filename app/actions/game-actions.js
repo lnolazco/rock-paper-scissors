@@ -25,16 +25,17 @@ export function resetGame() {
   };
 }
 
-export function decreaseCount(counter) {
-  if (counter > 1) {
-    return {
-      type: DECREASE_COUNT,
-    };
-  }
+export function decreaseCount() {
+  return {
+    type: DECREASE_COUNT,
+  };
+}
+
+export function finishRound(cpuSelection, result) {
   return {
     type: FINISH_ROUND,
-    result: 'user',
-    cpuSelection: 'paper',
+    cpuSelection,
+    result,
   };
 }
 

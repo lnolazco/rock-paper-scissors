@@ -1,10 +1,9 @@
-import { startGame, resetGame, setUserSelection } from '../../../app/actions/game-actions';
+import { startGame, resetGame, setUserSelection, decreaseCount, finishRound } from '../../../app/actions/game-actions';
 import {
   DECREASE_COUNT,
   START_GAME,
   RESET_GAME,
   USER_SELECTION,
-  CPU_SELECTION,
   FINISH_ROUND,
 } from '../../../app/actions/types';
 
@@ -30,5 +29,24 @@ describe('Game actions', () => {
       userSelection,
     };
     expect(setUserSelection(userSelection)).toEqual(expectedAction);
+  });
+
+  test('should create an action to decrease the counter', () => {
+    const expectedAction = {
+      type: DECREASE_COUNT,
+    };
+    expect(decreaseCount()).toEqual(expectedAction);
+  });
+
+  test('should create an action to finish round', () => {
+    const cpuSelection = 'paper';
+    const result = 'user';
+    const expectedAction = {
+      type: FINISH_ROUND,
+      cpuSelection,
+      result,
+    };
+
+    expect(finishRound(cpuSelection, result)).toEqual(expectedAction);
   });
 });

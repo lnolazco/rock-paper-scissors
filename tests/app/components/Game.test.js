@@ -17,6 +17,7 @@ describe('Game', () => {
     startGame: jest.fn(),
     resetGame: jest.fn(),
     decreaseCount: jest.fn(),
+    finishRound: jest.fn(),
     setUserSelection: jest.fn(),
   };
 
