@@ -20,7 +20,7 @@ describe('Game', () => {
     setUserSelection: jest.fn(),
   };
 
-  beforeAll(() => {
+  beforeEach(() => {
     game = shallow(<Game.WrappedComponent {...defaultProps} />);
   });
 
@@ -30,6 +30,7 @@ describe('Game', () => {
 
   test('should call start action when click on start button', () => {
     const button = game.find('button').at(0);
+
     button.simulate('click');
 
     expect(defaultProps.startGame).toHaveBeenCalled();
@@ -37,18 +38,9 @@ describe('Game', () => {
 
   test('should call reset action when click on reset button', () => {
     const button = game.find('button').at(1);
+
     button.simulate('click');
 
     expect(defaultProps.resetGame).toHaveBeenCalled();
-  });
-
-  describe('when game has started', () => {
-    test('should be able to select an option', () => {
-      expect(false).toBe(true);
-    });
-
-    test('should call decrease counter action 3 times', () => {
-      expect(false).toBe(true);
-    });
   });
 });
