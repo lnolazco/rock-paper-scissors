@@ -6,12 +6,12 @@ import {
   FINISH_ROUND,
 } from './types';
 
-import {
-  ROCK,
-  PAPER,
-  SCISSORS,
-  gameSelection,
-} from '../config/constants';
+// import {
+//   ROCK,
+//   PAPER,
+//   SCISSORS,
+//   gameSelection,
+// } from '../config/constants';
 
 export function startGame() {
   return {
@@ -25,9 +25,16 @@ export function resetGame() {
   };
 }
 
-export function decreaseCount() {
+export function decreaseCount(counter) {
+  if (counter > 1) {
+    return {
+      type: DECREASE_COUNT,
+    };
+  }
   return {
-    type: DECREASE_COUNT,
+    type: FINISH_ROUND,
+    result: 'user',
+    cpuSelection: 'paper',
   };
 }
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-// import App from '../components/App';
+import Game from '../components/Game';
 
 const Root = () => {
   return (
     <Router>
-      <Route path="/" />
+      <Route path="/" component={Game} />
     </Router>
   );
 };

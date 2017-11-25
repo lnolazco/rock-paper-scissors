@@ -19,7 +19,8 @@ class Game extends PureComponent {
   startGame = () => {
     this.props.startGame();
     this.interval = setInterval(() => {
-      this.props.decreaseCount();
+      const { counter, userSelection } = this.props;
+      this.props.decreaseCount(counter, userSelection);
     }, 1000);
   };
 
@@ -98,7 +99,7 @@ function mapDispatchToProps(dispatch) {
   return {
     startGame: () => dispatch(startGame()),
     resetGame: () => dispatch(resetGame()),
-    decreaseCount: () => dispatch(decreaseCount()),
+    decreaseCount: (counter, userSelection) => dispatch(decreaseCount(counter, userSelection)),
     setUserSelection: selection => dispatch(setUserSelection(selection)),
   };
 }
