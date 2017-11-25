@@ -6,15 +6,58 @@ import Score from '../Score';
 import Screen from '../Screen';
 import UserControls from '../UserControls';
 import { startGame, resetGame, decreaseCount, setUserSelection, finishRound } from '../../actions/game-actions';
+import {
+  ROCK,
+  PAPER,
+  SCISSORS,
+} from '../../config/constants';
 
 class Game extends PureComponent {
+  static gameSelection(value) {
+    switch (value) {
+      case 1: return ROCK;
+      case 2: return PAPER;
+      case 3: return SCISSORS;
+      default: return '';
+    }
+  }
+
   componentDidUpdate(prevProps) {
     if (prevProps.on && !this.props.on) {
       clearInterval(this.interval);
     }
   }
 
-  interval = null;
+  getResults = () => {
+    const { userSelection } = this.props;
+    let result = 'draw';
+    const cpuSelection = Game.gameSelection(Math.ceil(Math.random() * 3));
+    if (userSelection !== cpuSelection) {
+      if (userSelection === PAPER) {
+        if (cpuSelection === ROCK) {
+          result = 'user';
+        } else {
+          result = 'cpu';
+        }
+      }
+      if (userSelection === ROCK) {
+        if (cpuSelection === SCISSORS) {
+          result = 'user';
+        } else {
+          result = 'cpu';
+        }
+      }
+      if (userSelection === SCISSORS) {
+        if (cpuSelection === PAPER) {
+          result = 'user';
+        } else {
+          result = 'cpu';
+        }
+      }
+    }
+
+    this.props.finishRound(cpuSelection, result);
+  }
 
   startGame = () => {
     this.props.startGame();
@@ -23,7 +66,7 @@ class Game extends PureComponent {
       if (counter) {
         this.props.decreaseCount();
       } else {
-        this.props.finishRound('paper', 'user');
+        this.getResults();
       }
     }, 1000);
   };
@@ -31,6 +74,8 @@ class Game extends PureComponent {
   resetGame = () => {
     this.props.resetGame();
   }
+
+  interval = null;
 
   render() {
     const {

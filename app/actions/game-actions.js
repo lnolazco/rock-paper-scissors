@@ -6,13 +6,6 @@ import {
   FINISH_ROUND,
 } from './types';
 
-// import {
-//   ROCK,
-//   PAPER,
-//   SCISSORS,
-//   gameSelection,
-// } from '../config/constants';
-
 export function startGame() {
   return {
     type: START_GAME,
