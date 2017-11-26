@@ -13,7 +13,8 @@ import {
 } from '../../config/constants';
 
 class Game extends PureComponent {
-  static gameSelection(value) {
+  static getCpuSelection() {
+    const value = Math.ceil(Math.random() * 3);
     switch (value) {
       case 1: return ROCK;
       case 2: return PAPER;
@@ -22,16 +23,9 @@ class Game extends PureComponent {
     }
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.on && !this.props.on) {
-      clearInterval(this.interval);
-    }
-  }
-
-  getResults = () => {
-    const { userSelection } = this.props;
+  static getResult(userSelection, cpuSelection) {
     let result = 'draw';
-    const cpuSelection = Game.gameSelection(Math.ceil(Math.random() * 3));
+
     if (userSelection !== cpuSelection) {
       if (userSelection === PAPER) {
         if (cpuSelection === ROCK) {
@@ -55,18 +49,26 @@ class Game extends PureComponent {
         }
       }
     }
+    return result;
+  }
 
-    this.props.finishRound(cpuSelection, result);
+  componentDidUpdate(prevProps) {
+    if (prevProps.on && !this.props.on) {
+      clearInterval(this.interval);
+    }
   }
 
   startGame = () => {
     this.props.startGame();
     this.interval = setInterval(() => {
-      const { counter } = this.props;
+      const { counter, userSelection } = this.props;
       if (counter) {
         this.props.decreaseCount();
       } else {
-        this.getResults();
+        const cpuSelection = Game.getCpuSelection();
+        const result = Game.getResult(userSelection, cpuSelection);
+
+        this.props.finishRound(cpuSelection, result);
       }
     }, 1000);
   };

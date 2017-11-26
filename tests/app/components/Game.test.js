@@ -44,4 +44,32 @@ describe('Game', () => {
 
     expect(defaultProps.resetGame).toHaveBeenCalled();
   });
+
+  describe('getCpuSelection method', () => {
+    test('should generate a random number between 1 and 3', () => {
+      expect(['rock', 'paper', 'scissors']).toContain(Game.getCpuSelection());
+    });
+  });
+
+  describe('getResult method', () => {
+    test('should return draw if user and cpu has the same value', () => {
+      expect(Game.getResult('paper', 'paper')).toBe('draw');
+    });
+
+    test('should user win if user has rock and cpu siccors', () => {
+      expect(Game.getResult('rock', 'scissors')).toBe('user');
+    });
+
+    test('should user win if user has scissors and cpu paper', () => {
+      expect(Game.getResult('scissors', 'paper')).toBe('user');
+    });
+
+    test('should user lose if user has scissors and cpu rock', () => {
+      expect(Game.getResult('scissors', 'rock')).toBe('cpu');
+    });
+
+    test('should user lose if user has rock and cpu paper', () => {
+      expect(Game.getResult('rock', 'paper')).toBe('cpu');
+    });
+  });
 });
