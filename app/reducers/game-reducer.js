@@ -11,7 +11,7 @@ import initialState from './game-initial-state';
 export default function app(state = initialState, action) {
   switch (action.type) {
     case START_GAME:
-      return { ...state, on: true };
+      return { ...state, on: true, userSelection: '', cpuSelection: '', result: '' };
     case RESET_GAME:
       return initialState;
     case DECREASE_COUNT:

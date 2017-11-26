@@ -16,6 +16,9 @@ describe('Game reducer', () => {
   test('should handle START GAME', () => {
     const state = gameReducer(undefined, { type: START_GAME });
     expect(state.on).toBe(true);
+    expect(state.userSelection).toBe('');
+    expect(state.cpuSelection).toBe('');
+    expect(state.result).toBe('');
   });
 
   test('should handle RESET GAME', () => {
