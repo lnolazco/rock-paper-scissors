@@ -1,0 +1,17 @@
+.game {
+  width: 100%;
+  text-align: center;
+
+  &__hero {
+    width: 310px;
+  }
+
+  &__controls {
+    width: 310px;
+    margin: auto;
+
+    &__button {
+      width: 50%;
+    }
+  }
+}

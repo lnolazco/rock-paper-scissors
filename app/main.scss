@@ -1,3 +1,4 @@
-body {
-  font-family: 'Arial';
-}
+@import '~antd/dist/antd.css';
+@import './components/Game/styles.scss';
+@import './components/Screen/styles.scss';
+@import './components/Score/styles.scss';

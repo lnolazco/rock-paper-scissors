@@ -30,7 +30,7 @@ describe('Game', () => {
   });
 
   test('should call start action when click on start button', () => {
-    const button = game.find('button').at(0);
+    const button = game.find('.game__controls__button').at(0);
 
     button.simulate('click');
 
@@ -38,7 +38,7 @@ describe('Game', () => {
   });
 
   test('should call reset action when click on reset button', () => {
-    const button = game.find('button').at(1);
+    const button = game.find('.game__controls__button').at(1);
 
     button.simulate('click');
 

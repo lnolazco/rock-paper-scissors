@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Card, Button, Icon } from 'antd';
 
 import Score from '../Score';
 import Screen from '../Screen';
@@ -93,22 +94,36 @@ class Game extends PureComponent {
 
     return (
       <div className="game">
-        <div>
-          <button onClick={this.startGame}>Start</button>
-          <button onClick={this.resetGame}>Reset</button>
+        <img
+          src="https://media1.s-nbcnews.com/j/newscms/2016_11/1016196/rock-paper-scissors-today-tease-160317_de7dcaf2904059d3334a924d83d3d836.today-inline-large.jpg"
+          alt=""
+          className="game__hero"
+        />
+        <Card
+          title="Rock Paper Scissors game!"
+          style={{ width: 310, margin: 'auto' }}
+        >
+          <Score userScore={userScore} cpuScore={cpuScore} />
+          <Screen
+            on={on}
+            counter={counter}
+            result={result}
+            cpuSelection={cpuSelection}
+            userSelection={userSelection}
+          />
+          <UserControls
+            disabled={!on}
+            onSelect={onSelect}
+          />
+        </Card>
+        <div className="game__controls">
+          <Button type="danger" className="game__controls__button" onClick={this.startGame}>
+            <Icon type="play-circle" />Start
+          </Button>
+          <Button className="game__controls__button" onClick={this.resetGame}>
+            Reset<Icon type="sync" />
+          </Button>
         </div>
-        <Screen
-          counter={counter}
-          result={result}
-          cpuSelection={cpuSelection}
-          userSelection={userSelection}
-        />
-        <UserControls
-          disabled={!on}
-          optionSelected={userSelection}
-          onSelect={onSelect}
-        />
-        <Score userScore={userScore} cpuScore={cpuScore} />
       </div>
     );
   }

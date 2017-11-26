@@ -31,6 +31,11 @@ Node.js
 - Start the app `npm start`
 - Open [http://localhost:8080](http://localhost:8080)
 
+## How to play
+- Press start
+- You have 3 seconds to select an option
+- Get the results
+
 ## Available Commands
 
 - `npm start` - start the dev server

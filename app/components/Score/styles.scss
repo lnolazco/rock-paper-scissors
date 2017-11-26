@@ -1,0 +1,19 @@
+.score {
+  padding-bottom: 10px;
+
+  &__title {
+    top: 10px;
+    position: relative;
+    background: white;
+    padding: 5px;
+    font-weight: bold;
+  }
+
+  &__content {
+    border-radius: 10px;
+    border: 3px solid gray;
+    padding: 8px;
+    width: 50%;
+    margin: auto;
+  }
+}

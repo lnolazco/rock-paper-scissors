@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'antd';
 
 import { ROCK, PAPER, SCISSORS } from '../../config/constants';
 
@@ -21,21 +22,29 @@ class UserControls extends PureComponent {
 
     return (
       <div className="user-controls">
-        <button
-          className="user-controls__rock"
-          disabled={disabled}
-          onClick={this.setRock}
-        >Rock</button>
-        <button
-          className="user-controls__paper"
-          disabled={disabled}
-          onClick={this.setPaper}
-        >Paper</button>
-        <button
-          className="user-controls__scissors"
-          disabled={disabled}
-          onClick={this.setScissors}
-        >Scissors</button>
+        <Button.Group size="large">
+          <Button
+            className="user-controls__rock"
+            disabled={disabled}
+            onClick={this.setRock}
+          >
+            Rock
+          </Button>
+          <Button
+            className="user-controls__paper"
+            disabled={disabled}
+            onClick={this.setPaper}
+          >
+            Paper
+          </Button>
+          <Button
+            className="user-controls__scissors"
+            disabled={disabled}
+            onClick={this.setScissors}
+          >
+            Scissors
+          </Button>
+        </Button.Group>
       </div>
     );
   }
@@ -43,12 +52,7 @@ class UserControls extends PureComponent {
 
 UserControls.propTypes = {
   disabled: PropTypes.bool.isRequired,
-  optionSelected: PropTypes.string,
   onSelect: PropTypes.func.isRequired,
-};
-
-UserControls.defaultProps = {
-  optionSelected: '',
 };
 
 export default UserControls;
