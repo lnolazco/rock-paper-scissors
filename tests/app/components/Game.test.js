@@ -71,5 +71,14 @@ describe('Game', () => {
     test('should user lose if user has rock and cpu paper', () => {
       expect(Game.getResult('rock', 'paper')).toBe('cpu');
     });
+
+    test('should user win if user has rock and cpu lizzard', () => {
+      expect(Game.getResult('rock', 'lizzard')).toBe('user');
+    });
+
+    test('should user loses if user has rock and cpu spock', () => {
+      expect(Game.getResult('rock', 'spock')).toBe('cpu');
+    });
+    
   });
 });

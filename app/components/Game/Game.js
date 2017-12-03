@@ -11,53 +11,70 @@ import {
   ROCK,
   PAPER,
   SCISSORS,
+  LIZZARD,
+  SPOCK,
 } from '../../config/constants';
 
 class Game extends PureComponent {
   static getCpuSelection() {
-    const value = Math.ceil(Math.random() * 3);
+    const value = Math.floor((Math.random() * 5));
     switch (value) {
-      case 1: return ROCK;
-      case 2: return PAPER;
-      case 3: return SCISSORS;
+      case 0: return ROCK;
+      case 1: return PAPER;
+      case 2: return SCISSORS;
+      case 3: return LIZZARD;
+      case 4: return SPOCK;
       default: return '';
     }
   }
 
   static getResult(userSelection, cpuSelection) {
-    let result = 'draw';
+    const rules = {
+      rock: {
+        rock: 'draw',
+        paper: 'cpu',
+        scissors: 'user',
+        lizzard: 'user',
+        spock: 'cpu',
+      },
+      paper: {
+        rock: 'user',
+        paper: 'draw',
+        scissors: 'cpu',
+        lizzard: 'cpu',
+        spock: 'user',
+      },
+      scissors: {
+        rock: 'cpu',
+        paper: 'user',
+        scissors: 'draw',
+        lizzard: 'user',
+        spock: 'cpu',
+      },
+      lizzard: {
+        rock: 'cpu',
+        paper: 'user',
+        scissors: 'cpu',
+        lizzard: 'draw',
+        spock: 'user',
+      },
+      spock: {
+        rock: 'user',
+        paper: 'cpu',
+        scissors: 'user',
+        lizzard: 'cpu',
+        spock: 'draw',
+      },
+    };
 
-    if (userSelection !== cpuSelection) {
-      if (userSelection === PAPER) {
-        if (cpuSelection === ROCK) {
-          result = 'user';
-        } else {
-          result = 'cpu';
-        }
-      }
-      if (userSelection === ROCK) {
-        if (cpuSelection === SCISSORS) {
-          result = 'user';
-        } else {
-          result = 'cpu';
-        }
-      }
-      if (userSelection === SCISSORS) {
-        if (cpuSelection === PAPER) {
-          result = 'user';
-        } else {
-          result = 'cpu';
-        }
-      }
-    }
-    return result;
+    return rules[userSelection][cpuSelection];
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.on && !this.props.on) {
-      clearInterval(this.interval);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps.on && !this.props.on) {
+  //     clearInterval(this.interval);
+  //   }
+  // }
 
   startGame = () => {
     this.props.startGame();
@@ -70,6 +87,7 @@ class Game extends PureComponent {
         const result = Game.getResult(userSelection, cpuSelection);
 
         this.props.finishRound(cpuSelection, result);
+        clearInterval(this.interval);
       }
     }, 1000);
   };

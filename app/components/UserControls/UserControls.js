@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'antd';
 
-import { ROCK, PAPER, SCISSORS } from '../../config/constants';
+import { ROCK, PAPER, SCISSORS, LIZZARD, SPOCK } from '../../config/constants';
 
 class UserControls extends PureComponent {
   setRock = () => {
@@ -15,6 +15,14 @@ class UserControls extends PureComponent {
 
   setScissors = () => {
     this.props.onSelect(SCISSORS);
+  };
+
+  setLizzard = () => {
+    this.props.onSelect(LIZZARD);
+  };
+
+  setSpock = () => {
+    this.props.onSelect(SPOCK);
   };
 
   render() {
@@ -43,6 +51,20 @@ class UserControls extends PureComponent {
             onClick={this.setScissors}
           >
             Scissors
+          </Button>
+          <Button
+            className="user-controls__lizzard"
+            disabled={disabled}
+            onClick={this.setLizzard}
+          >
+            Lizzard
+          </Button>
+          <Button
+            className="user-controls__spock"
+            disabled={disabled}
+            onClick={this.setSpock}
+          >
+            Spock
           </Button>
         </Button.Group>
       </div>

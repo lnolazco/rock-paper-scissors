@@ -6,6 +6,8 @@ import {
   ROCK,
   PAPER,
   SCISSORS,
+  LIZZARD,
+  SPOCK,
 } from '../../config/constants';
 
 class Screen extends PureComponent {
@@ -13,6 +15,9 @@ class Screen extends PureComponent {
     if (value === ROCK) return 'http://pngimg.com/uploads/stone/stone_PNG13556.png';
     if (value === PAPER) return 'http://www.dick-blick.com/items/102/40/10240-1009-1-2ww-m.jpg';
     if (value === SCISSORS) return 'http://cdn3.volusion.com/4jdsg.2wu4y/v/vspfiles/photos/600323-2.jpg';
+    if (value === LIZZARD) return 'http://media.gettyimages.com/photos/lizard-picture-id175399935?s=612x612';
+    if (value === SPOCK) return 'http://www.startrek.com/uploads/assets/db_articles/6ee08d45f7a94d4c6fda9ee84833054a687ddf77.jpg';
+
     return '';
   }
 
